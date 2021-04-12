@@ -23,13 +23,27 @@ class Play extends Phaser.Scene {
             'rocket'
         );
 
-        this.ship = new Ship(
+        this.ship01 = new Ship(
             this,
             100,
             200,
             'spaceship',
         );
         
+        this.ship02 = new Ship(
+            this, 
+            300, 
+            280,
+            'spaceship'
+            ).setOrigin(0,0);
+        
+        this.ship03 = new Ship(
+            this,
+            game.config.width,
+            borderUISize*6 + borderPadding*4,
+            'spaceship'
+            ).setOrigin(0,0);
+
         // green UI background
         this.add.rectangle(
             0,
@@ -56,10 +70,13 @@ class Play extends Phaser.Scene {
     update() {
         this.starfield.tilePositionX -= 4;
         this.p1Rocket.update();
-        this.ship.update();
+        this.ship01.update();
+        this.ship02.update();
+        this.ship03.update();
 
-        this.checkCollision(this.p1Rocket, this.ship);
-        
+        this.checkCollision(this.p1Rocket, this.ship01);
+        this.checkCollision(this.p1Rocket, this.ship02);
+        this.checkCollision(this.p1Rocket, this.ship03); 
     }
 
     checkCollision(rocket, ship) {

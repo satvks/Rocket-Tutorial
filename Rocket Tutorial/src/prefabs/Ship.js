@@ -15,5 +15,6 @@ class Ship extends Phaser.GameObjects.Sprite {
 
     reset() {
         this.x = game.config.width + 40;
+        this.alpha = 1;
     }
 }
