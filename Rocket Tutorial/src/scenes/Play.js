@@ -16,33 +16,35 @@ class Play extends Phaser.Scene {
     create() {
 
         // initialize score
+        //(for git) added score and timer in seperate "commits" sixth
         this.p1Score = 0;
         this.gameOver = false;
-
+        //(for git) fifth, added animation and changed collision logic to return bool.
+        // added shipExplode to replace collision stage changes.
         this.anims.create({
             key: 'explode',
             frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
             frameRate: 30
         });
-
+        //(for git) applied first
         this.starfield = this.add.tileSprite(
             0, 0, 640, 480, 'starfield'
             ).setOrigin(0,0);
-
+        //(for git) applied second
         this.p1Rocket = new Rocket( // create player
             this,
             game.config.width / 2,
             game.config.height - borderUISize - borderPadding,
             'rocket'
         );
-
+        //(for git) set up third, with collision detection in following commit.
         this.ship01 = new Ship(
             this,
             100,
             200,
             'spaceship',
         );
-        
+        //(for git) set up (fourth) after ship 01, alongside ship03.
         this.ship02 = new Ship(
             this, 
             300, 
