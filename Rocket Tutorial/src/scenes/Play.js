@@ -43,20 +43,26 @@ class Play extends Phaser.Scene {
             100,
             200,
             'spaceship',
+            0,
+            125
         );
         //(for git) set up (fourth) after ship 01, alongside ship03.
         this.ship02 = new Ship(
             this, 
             300, 
             280,
-            'spaceship'
+            'spaceship',
+            0,
+            110
             ).setOrigin(0,0);
         
         this.ship03 = new Ship(
             this,
             game.config.width,
             borderUISize*6 + borderPadding*4,
-            'spaceship'
+            'spaceship',
+            0,
+            100
             ).setOrigin(0,0);
 
         // green UI background
@@ -132,8 +138,8 @@ class Play extends Phaser.Scene {
 
     checkCollision(rocket, ship) {
         if(rocket.x + rocket.width > ship.x &&
-            rocket.x +rocket.width < ship.x + ship.width &&
-            rocket.y > ship.y &&
+            rocket.x < ship.x + ship.width &&
+            rocket.y + rocket.height > ship.y &&
             rocket.y < ship.y + ship.width) {
                 return true;
             }
@@ -154,7 +160,7 @@ class Play extends Phaser.Scene {
           boom.destroy();                       // remove explosion sprite
         });
         // score add and repaint
-        this.p1Score += 100;
+        this.p1Score += ship.pointValue;
         this.scoreLeft.text = this.p1Score;       
     }
 }
